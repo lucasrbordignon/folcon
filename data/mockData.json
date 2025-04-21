@@ -1,0 +1,207 @@
+{
+  "contatos": [
+    {
+      "id": "1",
+      "client": {
+        "id": "1",
+        "name": "Lucas Rodrigues Bordignon"
+      },
+      "contactedAt": "2025-03-02T10:00:00",
+      "interest": "Compra de produtos",
+      "status": "finalizado",
+      "observation": "Cliente deseja saber quais iphones eu tenho disponível no momento, ele queria mesmo era o 14 mas eu tinha o 12...",
+      "budgets": 3
+    },
+    {
+      "id": "2",
+      "client": {
+        "id": "2",
+        "name": "Amanda Silva Oliveira"
+      },
+      "contactedAt": "2025-03-03T11:30:00",
+      "interest": "Compra de produtos",
+      "status": "aberto",
+      "observation": "Amanda está interessada em um celular novo e quer saber sobre opções de pagamento.",
+      "budgets": 2
+    },
+    {
+      "id": "3",
+      "client": {
+        "id": "3",
+        "name": "Felipe Costa Pereira"
+      },
+      "contactedAt": "2025-03-04T14:00:00",
+      "interest": "Assinatura de plano",
+      "status": "finalizado",
+      "observation": "Felipe pediu informações sobre planos de telefonia, acabou fechando um plano básico.",
+      "budgets": 1
+    },
+    {
+      "id": "4",
+      "client": {
+        "id": "4",
+        "name": "Bruna Souza Mendes"
+      },
+      "contactedAt": "2025-03-05T09:00:00",
+      "interest": "Venda de acessórios",
+      "status": "aberto",
+      "observation": "Bruna quer comprar acessórios para celular, mas ainda está decidindo qual modelo escolher.",
+      "budgets": 3
+    },
+    {
+      "id": "5",
+      "client": {
+        "id": "5",
+        "name": "Carlos Alberto Martins"
+      },
+      "contactedAt": "2025-03-06T15:45:00",
+      "interest": "Compra de produtos",
+      "status": "cancelado",
+      "observation": "Carlos estava procurando um modelo específico de celular, mas ele cancelou a compra por não encontrar o modelo desejado.",
+      "budgets": 2
+    },
+    {
+      "id": "6",
+      "client": {
+        "id": "6",
+        "name": "Joana Pereira Lima"
+      },
+      "contactedAt": "2025-03-07T13:30:00",
+      "interest": "Compra de produtos",
+      "status": "aberto",
+      "observation": "Joana está em dúvida entre dois modelos de celulares e pediu uma avaliação comparativa.",
+      "budgets": 4
+    },
+    {
+      "id": "7",
+      "client": {
+        "id": "7",
+        "name": "Diego Souza Alves"
+      },
+      "contactedAt": "2025-03-08T16:00:00",
+      "interest": "Compra de produtos",
+      "status": "finalizado",
+      "observation": "Diego comprou um celular de última geração e ficou satisfeito com a compra.",
+      "budgets": 1
+    },
+    {
+      "id": "8",
+      "client": {
+        "id": "8",
+        "name": "Patrícia Gomes da Silva"
+      },
+      "contactedAt": "2025-03-09T08:30:00",
+      "interest": "Venda de acessórios",
+      "status": "aberto",
+      "observation": "Patrícia quer comprar acessórios para o celular, principalmente capinhas e fones.",
+      "budgets": 2
+    },
+    {
+      "id": "9",
+      "client": {
+        "id": "9",
+        "name": "Roberto Lima Santos"
+      },
+      "contactedAt": "2025-03-10T10:30:00",
+      "interest": "Assinatura de plano",
+      "status": "finalizado",
+      "observation": "Roberto decidiu contratar um plano de internet móvel, escolheu o plano intermediário.",
+      "budgets": 1
+    },
+    {
+      "id": "10",
+      "client": {
+        "id": "10",
+        "name": "Vanessa Almeida Ferreira"
+      },
+      "contactedAt": "2025-03-11T12:00:00",
+      "interest": "Compra de produtos",
+      "status": "cancelado",
+      "observation": "Vanessa desistiu da compra depois de pesquisar mais sobre o modelo.",
+      "budgets": 5
+    }
+  ],
+  "clientes": [
+    {
+      "id": "1",
+      "name": "Lucas Rodrigues Bordignon",
+      "cpf": "40585677832",
+      "instragramId": "lucas.r.bordignon",
+      "cellPhone": "15991360221",
+      "email": "lucas.r.bordiognon@gmail.com"
+    },
+    {
+      "id": "2",
+      "name": "Amanda Silva Oliveira",
+      "cpf": "12345678901",
+      "instragramId": "amanda_silva.oliveira",
+      "cellPhone": "11987654321",
+      "email": "amanda.silva.oliveira@gmail.com"
+    },
+    {
+      "id": "3",
+      "name": "Felipe Costa Pereira",
+      "cpf": "23456789012",
+      "instragramId": "felipe.costa.pereira",
+      "cellPhone": "21976543210",
+      "email": "felipe.costa.pereira@yahoo.com"
+    },
+    {
+      "id": "4",
+      "name": "Bruna Souza Mendes",
+      "cpf": "34567890123",
+      "instragramId": "bruna.souza.mendes",
+      "cellPhone": "61987456321",
+      "email": "bruna.souza.mendes@gmail.com"
+    },
+    {
+      "id": "5",
+      "name": "Carlos Alberto Martins",
+      "cpf": "45678901234",
+      "instragramId": "carlos_alberto.martins",
+      "cellPhone": "31976543210",
+      "email": "carlos.alberto.martins@hotmail.com"
+    },
+    {
+      "id": "6",
+      "name": "Joana Pereira Lima",
+      "cpf": "56789012345",
+      "instragramId": "joana.pereira.lima",
+      "cellPhone": "41987654321",
+      "email": "joana.pereira.lima@gmail.com"
+    },
+    {
+      "id": "7",
+      "name": "Diego Souza Alves",
+      "cpf": "67890123456",
+      "instragramId": "diego.souza.alves",
+      "cellPhone": "61976543210",
+      "email": "diego.souza.alves@hotmail.com"
+    },
+    {
+      "id": "8",
+      "name": "Patrícia Gomes da Silva",
+      "cpf": "78901234567",
+      "instragramId": "patricia.gomes.silva",
+      "cellPhone": "51987654321",
+      "email": "patricia.gomes.silva@yahoo.com"
+    },
+    {
+      "id": "9",
+      "name": "Roberto Lima Santos",
+      "cpf": "89012345678",
+      "instragramId": "roberto.lima.santos",
+      "cellPhone": "11976543210",
+      "email": "roberto.lima.santos@gmail.com"
+    },
+    {
+      "id": "10",
+      "name": "Vanessa Almeida Ferreira",
+      "cpf": "90123456789",
+      "instragramId": "vanessa.almeida.ferreira",
+      "cellPhone": "81987654321",
+      "email": "vanessa.almeida.ferreira@hotmail.com"
+    }
+  ]
+  
+}
