@@ -3,7 +3,9 @@
   "compilerOptions": {
     "strict": true,
     "types": [
-      "nativewind/types"
+      "nativewind/types",
+      "jest",
+      "@testing-library/jest-native"
     ],
     "paths": {
       "@/*": [
