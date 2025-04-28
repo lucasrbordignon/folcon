@@ -2,21 +2,24 @@ import ContactCards from '@/components/ContactCards'
 import DateDropdown from '@/components/DateHomeDropdown'
 import Header from '@/components/Header'
 import Search from '@/components/Search'
+import SortOrderDropdown from '@/components/SortOrderDropdown'
 import StatusDropdown from '@/components/StatusHomeDropdown'
 import mockData from '@/data/mockData.json'
 import { contactHomeType } from '@/types/contactHomeTypes'
 import { isToday, isYesterday, subDays } from 'date-fns'
 import { useEffect, useState } from 'react'
-import { Text, View } from 'react-native'
+import { ScrollView, Text, View } from 'react-native'
 
 type statusFilterType = 'aberto' | 'finalizado' | 'cancelado' | 'todos'
 type dateFilterType = 'hoje' | 'ontem' | 'ultimos7dias' | 'ultimos30dias' | 'todos'
+type sortOrderType = 'newest' | 'oldest';
 
 export default function HomeScreen() {
 
   const [items, setItems] = useState<contactHomeType[]>([]);
   const [selectedFilter, setSelectedFilter] = useState<statusFilterType>('aberto');
   const [selectedDateFilter, setSelectedDateFilter] = useState<dateFilterType>('hoje')
+  const [sortOrder, setSortOrder] = useState<sortOrderType>('newest');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -57,6 +60,12 @@ export default function HomeScreen() {
     ? filterByDate(items, selectedDateFilter) 
     : filterByDate(items.filter(item => item.status === selectedFilter), selectedDateFilter); 
 
+  const sortedItems = [...filteredItems].sort((a, b) => {
+    const dateA = new Date(a.contactedAt).getTime();
+    const dateB = new Date(b.contactedAt).getTime();
+    return sortOrder === 'newest' ? dateB - dateA : dateA - dateB;
+  });
+
   return (
     <View className='flex-1'>
       <Header />
@@ -65,13 +74,16 @@ export default function HomeScreen() {
         Contatos
       </Text>      
 
-      <View className='flex flex-row'>      
-        <StatusDropdown selected={selectedFilter} onChange={setSelectedFilter} />
-        <DateDropdown selected={selectedDateFilter} onChange={setSelectedDateFilter} />
+      <View className='flex flex-row px-4' style={{ overflow: 'hidden' }}>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+          <SortOrderDropdown selected={sortOrder} onChange={setSortOrder} />
+          <StatusDropdown selected={selectedFilter} onChange={setSelectedFilter} />
+          <DateDropdown selected={selectedDateFilter} onChange={setSelectedDateFilter} />
+        </ScrollView>
       </View>
       
       <View className='px-4 flex-1'>
-        <ContactCards items={filteredItems}/>     
+        <ContactCards items={sortedItems}/>     
       </View>
        
     </View>

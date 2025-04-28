@@ -9,7 +9,7 @@ import { Text, View } from 'react-native'
 export default function ClientsScreen() {
 
   const [items, setItems] = useState<clientListTypes[]>([]);
-
+  
   useEffect(() => {
     const fetchData = async () => {
       await new Promise(resolve => setTimeout(resolve, 1000));
@@ -24,7 +24,7 @@ export default function ClientsScreen() {
       <Header />
       <Search />
       <Text className='text-teal-900 text-4xl font-semibold px-4 mt-3'>
-        Clientes
+        Leads
       </Text>      
 
       <View className='px-4 flex-1'>
