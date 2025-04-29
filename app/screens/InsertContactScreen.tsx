@@ -1,7 +1,9 @@
 import Header from "@/components/Header";
+import mockData from '@/data/mockData.json';
+import { clientListTypes } from "@/types/clientListTypes";
 import { useNavigation } from "expo-router";
-import { ChevronLeft, Info, Plus } from "lucide-react-native";
-import React, { useState } from "react";
+import { ChevronDown, ChevronLeft, Info, Plus } from "lucide-react-native";
+import React, { useEffect, useState } from "react";
 import {
   Keyboard,
   KeyboardAvoidingView,
@@ -11,15 +13,18 @@ import {
   TextInput,
   TouchableOpacity,
   TouchableWithoutFeedback,
-  View,
+  View
 } from "react-native";
+import { Menu } from 'react-native-paper';
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function InsertContactScreen() {
   const navigation = useNavigation();
   const insets = useSafeAreaInsets();
 
-  const [client, setClient] = useState("");
+  const [lead, setLead] = useState("");
+  const [leads, setLeads] = useState<clientListTypes[]>([]);
+  const [filteredLeads, setFilteredLeads] = useState<clientListTypes[]>([]);
   const [contactDate, setContactDate] = useState("");
   const [contactTime, setContactTime] = useState("");
   const [channel, setChannel] = useState("");
@@ -27,6 +32,30 @@ export default function InsertContactScreen() {
   const [observation, setObservation] = useState("");
   const [budgets, setBudgets] = useState([{ description: "", value: "" }]); // Inicialmente com 1 registro
   const [observationHeight, setObservationHeight] = useState(40);
+  const [dropdownVisible, setDropdownVisible] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      setLeads(mockData.clientes);
+      setFilteredLeads(mockData.clientes);
+    };
+
+    fetchData();
+  }, []); 
+
+  const handleSearch = (text: string) => {
+    setLead(text);
+    const filtered = leads.filter((item) =>
+      item.name.toLowerCase().includes(text.toLowerCase())
+    );
+    setFilteredLeads(filtered);
+  };
+
+  const handleSelectLead = (selectedLead: clientListTypes) => {
+    setLead(selectedLead.name);
+    setDropdownVisible(false);
+  };
 
   const handleAddBudget = () => {
     const lastBudget = budgets[budgets.length - 1];
@@ -107,21 +136,41 @@ export default function InsertContactScreen() {
                   </TouchableOpacity>
                 </View>
 
-                {/* Campo Cliente */}
                 <View className="mb-6">
                   <Text className="text-xl font-semibold text-teal-600 mb-2">
-                    Cliente
+                    Lead
                   </Text>
-                  <View className="flex-row items-center bg-white border border-gray-300 rounded-lg px-3 py-2">
-                    <TextInput
-                      placeholder="Cliente"
-                      className="flex-1 text-gray-800"
-                      placeholderTextColor="#9CA3AF"
-                      value={client}
-                      onChangeText={setClient}
-                    />
+                  <View  className="flex-row items-center bg-white border border-gray-300 rounded-lg px-3 py-4">
+                    <Menu
+                      visible={dropdownVisible}
+                      onDismiss={() => setDropdownVisible(false)}
+                      anchor={                          
+                        <View className="w-full flex flex-row items-center justify-between">                
+                          <Text className={`${lead ? "text-gray-800" : "text-gray-400"}`}>
+                            {lead || "Selecionar lead"}
+                          </Text> 
+                          <ChevronDown size={24} color="#0d9488" onPress={() => setDropdownVisible(true)}/>
+                        </View>                        
+                      }
+                    >
+                      {filteredLeads.map((item) => (
+                        <Menu.Item
+                          key={item.id}
+                          onPress={() => handleSelectLead(item)}
+                          title={item.name}
+                          titleStyle={{
+                            fontSize: 16,
+                            color: "#1F2937",
+                          }}
+                          style={{
+                            paddingVertical: 8,
+                          }}
+                        />
+                      ))}
+                    </Menu>
                   </View>
                 </View>
+
                 <View className="mb-6">
                   <Text className="text-xl font-semibold text-teal-600 mb-2">
                     Contato
