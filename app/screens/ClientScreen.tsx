@@ -1,4 +1,4 @@
-import Header from '@/components/Header';
+import Header from '@/components/layout/Header';
 import { useNavigation } from 'expo-router';
 import { ChevronLeft, InfoIcon } from 'lucide-react-native';
 import React, { useState } from 'react';

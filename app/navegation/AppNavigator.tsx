@@ -1,9 +1,9 @@
 
-import { MainTabs } from '@/components/MainTabs';
+import { MainTabs } from '@/components/layout/MainTabs';
 import React from 'react';
 import { PaperProvider } from 'react-native-paper';
-import InsertClientScreen from './screens/InsertClientScreen';
-import InsertContactScreen from './screens/InsertContactScreen';
+import InsertClientScreen from '../screens/ClientScreen';
+import InsertContactScreen from '../screens/ContactScreen';
 
 import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar } from 'react-native';

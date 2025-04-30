@@ -3,10 +3,10 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Home, Plus, Users } from 'lucide-react-native';
 import React from 'react';
 import { TouchableOpacity, View } from 'react-native';
-import ClientScreen from '../app/screens/ClientsScreen';
-import HomeScreen from '../app/screens/HomeScreen';
-import InsertClientScreen from '../app/screens/InsertClientScreen';
-import InsertContactScreen from '../app/screens/InsertContactScreen';
+import InsertClientScreen from '../../app/screens/ClientScreen';
+import ClientScreen from '../../app/screens/ClientsScreen';
+import InsertContactScreen from '../../app/screens/ContactScreen';
+import HomeScreen from '../../app/screens/HomeScreen';
 
 const Tab = createBottomTabNavigator();
 

@@ -8,7 +8,7 @@ export default function Header() {
   return (
     <View style={{ paddingTop: insets.top }} className="items-center bg-white w-full">
       <Image 
-        source={require('../assets/images/logoNome.png')}
+        source={require('../../assets/images/logoNome.png')}
         style={{ height: 72 }} 
         resizeMode="contain"
       />
