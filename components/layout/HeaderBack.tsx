@@ -1,4 +1,4 @@
-import { ChevronLeft } from "lucide-react-native";
+import { Ionicons } from '@expo/vector-icons';
 import React from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import Header from "./Header";
@@ -17,7 +17,7 @@ export default function ScreenHeader({ onBackPress, topInset }: ScreenHeaderProp
         className="absolute left-2 z-10" 
         style={{ position: "absolute", left: 10, top: topInset + 14, zIndex: 20, }}
       >
-        <ChevronLeft size={48} color="#0d9488" /> 
+        <Ionicons name="chevron-back" size={48} color="#0d9488" />
       </TouchableOpacity>
     </View>
   );

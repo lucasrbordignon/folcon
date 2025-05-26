@@ -4,8 +4,6 @@
     "strict": true,
     "types": [
       "nativewind/types",
-      "jest",
-      "@testing-library/jest-native"
     ],
     "paths": {
       "@/*": [

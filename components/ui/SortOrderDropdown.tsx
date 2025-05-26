@@ -1,4 +1,4 @@
-import { ArrowUpDown } from 'lucide-react-native';
+import { FontAwesome6 } from '@expo/vector-icons';
 import React, { useState } from 'react';
 import { Pressable, View } from 'react-native';
 import { Menu, Text } from 'react-native-paper';
@@ -35,7 +35,8 @@ const SortOrderDropdown: React.FC<SortOrderDropdownProps> = ({ selected, onChang
             onPress={openMenu}
             className="bg-teal-600 border border-teal-400 rounded-full flex flex-row py-2 px-4 gap-2 items-center"
           >
-            <ArrowUpDown color={'#FFFF'} size={18} />
+            <FontAwesome6 name="sort" size={18} color={'#FFFF'} />
+
             <Text className="!text-white">{getTitle(selected)}</Text>
           </Pressable>
         }

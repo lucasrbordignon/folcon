@@ -1,6 +1,6 @@
 import { contactHomeType } from '@/types/contactHomeTypes';
 import { selectColorFromStatus } from '@/utils/getStatusInfoFromContact';
-import { Check, HandCoins, Trash } from 'lucide-react-native';
+import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import { SwipeListView } from 'react-native-swipe-list-view';
@@ -49,7 +49,7 @@ export default function ContactCards({ items }: ContactCardsProps) {
         </View>
 
         <View className="flex flex-row gap-2 px-4 py-1 items-end">
-          <HandCoins color={'#0d9488'} size={18} />
+          <Ionicons name="cash" size={18} color={'#0d9488'} />
           <Text>{item.budgets}</Text>
         </View>
       </View>
@@ -67,7 +67,7 @@ export default function ContactCards({ items }: ContactCardsProps) {
         onPress={() => console.log('Finalizar')}
       >
         <View className="w-[75px] items-center">
-          <Check size={24} color="white" />
+          <Ionicons name="checkmark" size={24} color="white" />
         </View>
       </TouchableOpacity>
 
@@ -77,7 +77,7 @@ export default function ContactCards({ items }: ContactCardsProps) {
         onPress={() => console.log('Excluir')}
       >
         <View className="w-[75px] items-center">
-          <Trash size={24} color="white" />
+          <Ionicons name="trash" size={24} color="white" />
         </View>
       </TouchableOpacity>
     </View>

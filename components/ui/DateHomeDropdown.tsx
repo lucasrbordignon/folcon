@@ -1,5 +1,5 @@
 import { selectTitleFromDateFilter } from '@/utils/getDateFilterInfoFromContact';
-import { Calendar } from 'lucide-react-native';
+import { Ionicons } from '@expo/vector-icons';
 import React, { useState } from 'react';
 import { Pressable, Text, View } from 'react-native';
 import { Menu } from 'react-native-paper';
@@ -28,7 +28,7 @@ const DateDropdown: React.FC<DateDropdownProps> = ({ selected, onChange }) => {
         onDismiss={closeMenu}
         anchor={
           <Pressable onPress={openMenu} className='bg-teal-600 border border-teal-400 rounded-full flex flex-row py-2 px-4 gap-2'>
-            <Calendar color={'#FFFF'} size={18} />
+            <Ionicons name="calendar" size={18} color={'#FFFF'} />
             <Text className='!text-white'>
               {selectTitleFromDateFilter(selected)}
             </Text>

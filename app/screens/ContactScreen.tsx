@@ -4,12 +4,15 @@ import InputField from "@/components/ui/InputField";
 import SectionTitle from "@/components/ui/SectionTitle";
 import mockData from "@/data/mockData.json";
 import { clientListTypes } from "@/types/clientListTypes";
+import { Ionicons } from '@expo/vector-icons';
+import DateTimePicker from "@react-native-community/datetimepicker";
 import { useNavigation } from "expo-router";
-import { ChevronDown, Info, Plus } from "lucide-react-native";
 import React, { useEffect, useState } from "react";
 import {
+  Button,
   Keyboard,
   KeyboardAvoidingView,
+  Modal,
   Platform,
   ScrollView,
   Text,
@@ -27,14 +30,17 @@ export default function InsertContactScreen() {
   const [lead, setLead] = useState("");
   const [leads, setLeads] = useState<clientListTypes[]>([]);
   const [filteredLeads, setFilteredLeads] = useState<clientListTypes[]>([]);
-  const [contactDate, setContactDate] = useState("");
-  const [contactTime, setContactTime] = useState("");
   const [channel, setChannel] = useState("");
   const [subject, setSubject] = useState("");
   const [observation, setObservation] = useState("");
   const [budgets, setBudgets] = useState([{ description: "", value: "" }]); // Inicialmente com 1 registro
   const [observationHeight, setObservationHeight] = useState(40);
   const [dropdownVisible, setDropdownVisible] = useState(false);
+  const [contactDate, setContactDate] = useState(new Date());
+  const [contactTime, setContactTime] = useState(new Date());
+  const [showDatePicker, setShowDatePicker] = useState(false);
+  const [showTimePicker, setShowTimePicker] = useState(false);
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -86,6 +92,20 @@ export default function InsertContactScreen() {
     setBudgets(updatedBudgets);
   };
 
+  const handleDateChange = (event: any, selectedDate?: Date) => {
+    setShowDatePicker(false);
+    if (selectedDate) {
+      setContactDate(selectedDate);
+    }
+  };
+
+  const handleTimeChange = (event: any, selectedTime?: Date) => {
+    setShowTimePicker(false);
+    if (selectedTime) {
+      setContactTime(selectedTime);
+    }
+  };
+
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
@@ -112,7 +132,11 @@ export default function InsertContactScreen() {
                     Contato
                   </Text>
                   <TouchableOpacity>
-                    <Info size={24} color="#0d9488" />
+                    <Ionicons
+                      name="information-circle-outline"
+                      size={32}
+                      color="#0d9488"
+                    />
                   </TouchableOpacity>
                 </View>
 
@@ -132,11 +156,12 @@ export default function InsertContactScreen() {
                           {lead || "Selecione um Lead"}
                         </InputField>
                         <View className="absolute inset-y-0 right-2 flex justify-center items-center">
-                          <ChevronDown
+                          <Ionicons
+                            name="search"
                             size={24}
                             color="#0d9488"
                             onPress={() => setDropdownVisible(true)}
-                          />
+                          />                          
                         </View>
                       </View>
                     }
@@ -162,19 +187,114 @@ export default function InsertContactScreen() {
 
                   <View className="flex-row justify-between w-full gap-2">
                     <View className="flex-1">
-                      <InputField
-                        placeholder="Data do contato"
-                        value={contactDate}
-                        onChangeText={setContactDate}
-                      />
+                      <TouchableOpacity
+                        onPress={() => setShowDatePicker(true)}
+                        className="relative"
+                      >
+                        <InputField className="text-gray-800">
+                          {contactDate.toLocaleDateString("pt-BR", {
+                            day: "2-digit",month: "2-digit", year: "numeric",
+                          })}
+                        </InputField>
+                        <View className="absolute inset-y-0 right-2 flex justify-center items-center">
+                          <Ionicons
+                            name="calendar"                           
+                            size={24}
+                            color="#0d9488"
+                          />
+                        </View>
+                      </TouchableOpacity>
+                      {Platform.OS === "ios" ? (
+                        <Modal visible={showDatePicker} transparent animationType="slide">
+                          <View className="flex-1 justify-end bg-black/50">
+                            <View className="bg-white rounded-t-2xl p-4">
+                              <Text className="text-center font-semibold text-lg mb-2 text-teal-700">Escolha a Data</Text>
+                              <DateTimePicker
+                                value={contactDate}
+                                mode="date"
+                                display="spinner"
+                                textColor="#0d9488"
+                                locale="pt-BR"
+                                onChange={(event, date) => {
+                                  if (date) setContactDate(date);
+                                }}
+                                style={{ backgroundColor: "white" }}
+                              />
+                              <Button title="OK" onPress={() => setShowDatePicker(false)} color="#0d9488" />
+                            </View>
+                          </View>
+                        </Modal>
+                      ) : (
+                        showDatePicker && (
+                          <DateTimePicker
+                            value={contactDate}
+                            mode="date"
+                            display="spinner"
+                            locale="pt-BR"
+                            textColor="#0d9488"
+                            onChange={(event, date) => {
+                              setShowDatePicker(false);
+                              if (date) setContactDate(date);
+                            }}
+                          />
+                        )
+                      )}
                     </View>
 
                     <View className="flex-1">
-                      <InputField
-                        placeholder="Hora do contato"
-                        value={contactTime}
-                        onChangeText={setContactTime}
-                      />
+                      <TouchableOpacity
+                        onPress={() => setShowTimePicker(true)}       
+                        className="relative"                 
+                      >
+                        <InputField className="text-gray-800">
+                          {contactTime.toLocaleTimeString("pt-BR", {
+                            hour: "2-digit",
+                            minute: "2-digit",
+                          })}                          
+                        </InputField>
+                        <View className="absolute inset-y-0 right-2 flex justify-center items-center">
+                          <Ionicons
+                            name="time"
+                            size={24}
+                            color="#0d9488"
+                          />                          
+                        </View>
+                      </TouchableOpacity>
+                      {Platform.OS === "ios" ? (
+                        <Modal visible={showTimePicker} transparent animationType="slide">
+                          <View className="flex-1 justify-end bg-black/50">
+                            <View className="bg-white rounded-t-2xl p-4">
+                              <Text className="text-center font-semibold text-lg mb-2 text-teal-700">Escolha a Hora</Text>
+                              <DateTimePicker
+                                value={contactTime}
+                                mode="time"
+                                is24Hour={true}
+                                locale="pt-BR"
+                                display="spinner"
+                                textColor="#0d9488"
+                                onChange={(event, date) => {
+                                  if (date) setContactTime(date);
+                                }}                                
+                              />
+                              <Button title="OK" onPress={() => setShowTimePicker(false)} color="#0d9488" />
+                            </View>
+                          </View>
+                        </Modal>
+                      ) : (
+                        showTimePicker && (
+                          <DateTimePicker
+                            value={contactTime}
+                            mode="time"
+                            display="spinner"  
+                            locale="pt-BR"
+                            is24Hour={true}
+                            onChange={(event, date) => {
+                              setShowTimePicker(false);
+                              if (date) setContactTime(date);
+                            }}
+                          />
+                        )
+                      )}
                     </View>
                   </View>
 
@@ -213,7 +333,11 @@ export default function InsertContactScreen() {
                       onPress={handleAddBudget}
                       className="justify-center items-center self-center"
                     >
-                      <Plus size={32} color="#0d9488" />
+                      <Ionicons
+                        name="add"
+                        size={32}
+                        color="#0d9488"
+                      />
                     </TouchableOpacity>
                   </View>
 

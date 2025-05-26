@@ -1,5 +1,5 @@
 import { selectTitleFromStatus } from '@/utils/getStatusInfoFromContact';
-import { Funnel } from 'lucide-react-native';
+import { Ionicons } from '@expo/vector-icons';
 import React, { useState } from 'react';
 import { Pressable, View } from 'react-native';
 import { Menu, Text } from 'react-native-paper';
@@ -29,7 +29,7 @@ const StatusDropdown: React.FC<StatusDropdownProps> = ({ selected, onChange }) =
         onDismiss={closeMenu}
         anchor={
           <Pressable onPress={openMenu} className='bg-teal-600 border border-teal-400 rounded-full flex flex-row py-2 px-4 gap-2'>
-            <Funnel color={'#FFFF'} size={18} />
+            <Ionicons name="funnel" size={18} color={'#FFFF'} />
             <Text className='!text-white'>
               {selectTitleFromStatus(selected)}
             </Text>

@@ -1,5 +1,5 @@
 import { clientListTypes } from '@/types/clientListTypes';
-import { Trash } from 'lucide-react-native';
+import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import { SwipeListView } from 'react-native-swipe-list-view';
@@ -73,7 +73,7 @@ export default function ClientCards({ items }: ContactCardsProps) {
         onPress={() => console.log('Excluir')}
       >
         <View className="w-[75px] items-center">
-          <Trash size={24} color="white" />
+          <Ionicons name="trash" size={24} color="white" />
         </View>
       </TouchableOpacity>
     </View>

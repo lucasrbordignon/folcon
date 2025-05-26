@@ -1,6 +1,6 @@
 
+import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Home, Plus, Users } from 'lucide-react-native';
 import React from 'react';
 import { TouchableOpacity, View } from 'react-native';
 import InsertClientScreen from '../../app/screens/ClientScreen';
@@ -10,8 +10,8 @@ import HomeScreen from '../../app/screens/HomeScreen';
 
 const Tab = createBottomTabNavigator();
 
-const homeIcon = () => (<Home strokeWidth={2} size={32} color={'#8E8E8E'}/>)
-const usersIcon = () => (<Users strokeWidth={2} size={32} color={'#8E8E8E'}/>)
+const homeIcon = () => (<Ionicons name='home' strokeWidth={2} size={32} color={'#8E8E8E'}/>)
+const usersIcon = () => (<Ionicons name='person' strokeWidth={2} size={32} color={'#8E8E8E'}/>)
 
 const CustomTabBar = ({ state, descriptors, navigation }: any) => {
   const currentRouteName = state.routes[state.index]?.name;
@@ -46,7 +46,7 @@ const CustomTabBar = ({ state, descriptors, navigation }: any) => {
             elevation: 10,
           }}
         >
-          <Plus color="white" size={48} />
+          <Ionicons name="add" size={48} color="#fff" />
         </TouchableOpacity>
       </View>
 

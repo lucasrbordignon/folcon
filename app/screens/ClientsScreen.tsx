@@ -1,10 +1,10 @@
 import Header from '@/components/layout/Header'
 import ClientCards from '@/components/ui/ClientCards'
 import Search from '@/components/ui/Search'
-import mockData from '@/data/mockData.json'
 import { clientListTypes } from '@/types/clientListTypes'
 import { useEffect, useState } from 'react'
 import { Text, View } from 'react-native'
+import mockData from '../../data/mockData.json'
 
 export default function ClientsScreen() {
 

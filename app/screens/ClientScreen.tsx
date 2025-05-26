@@ -1,6 +1,6 @@
 import Header from '@/components/layout/Header';
+import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from 'expo-router';
-import { ChevronLeft, InfoIcon } from 'lucide-react-native';
 import React, { useState } from 'react';
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -56,7 +56,7 @@ export default function InsertClientScreen() {
             onPress={() => navigation.goBack()}
             className='absolute left-2 z-10' style={{ paddingTop: insets.top + 14}}
           >
-            <ChevronLeft size={48} color="#0d9488" />
+          <Ionicons name="arrow-back" size={32} color="#0d9488" />
         </TouchableOpacity>
       </View>
       
@@ -66,7 +66,7 @@ export default function InsertClientScreen() {
             Lead
           </Text> 
           <TouchableOpacity>
-            <InfoIcon size={32} color="#0d9488"/>
+            <Ionicons name="information-circle-outline" size={32} color="#0d9488"/>
           </TouchableOpacity>
         </View>
 

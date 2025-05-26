@@ -1,4 +1,4 @@
-import { SearchIcon } from 'lucide-react-native';
+import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 
 import {
@@ -47,7 +47,7 @@ export default function Search() {
             />
 
             <Pressable onPress={createThreeButtonAlert}>
-              <SearchIcon size={24} color="#8E8E8E"/>
+              <Ionicons name="search" size={24} color="#8E8E8E"/>
             </Pressable>
           </View>   
         </View>
