@@ -35,7 +35,7 @@ export default function ContactCards({ items }: ContactCardsProps) {
 
       <View className="flex gap-1">
         <Text className="text-2xl font-semibold text-teal-950">{item.interest}</Text>
-        <Text className="text-teal-950">{item.observation}</Text>
+        <Text className="text-teal-950">{item.observation.slice(0,90) + '...'}</Text>
       </View>
 
       <View className="flex flex-row justify-between mt-4">

@@ -1,5 +1,5 @@
 import React from "react";
-import { ActivityIndicator, Image, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, Image, KeyboardAvoidingView, Platform, ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
 import useLoginViewModel from "./view.models";
 
 export const LoginView: React.FC = () => {
@@ -7,6 +7,15 @@ export const LoginView: React.FC = () => {
     useLoginViewModel();
 
   return (
+    <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      keyboardVerticalOffset={Platform.OS === 'ios' ? 60 : 0} // Ajuste conforme header se tiver
+    >
+      <ScrollView
+        contentContainerStyle={{ flexGrow: 1 }}
+        keyboardShouldPersistTaps="handled"
+      >
     <View className="flex-1 bg-white">
       <View className="h-1/3 bg-zinc-100 items-center justify-center">
         <Image
@@ -60,5 +69,7 @@ export const LoginView: React.FC = () => {
         </View>
       </View>
     </View>
+    </ScrollView>
+    </KeyboardAvoidingView>
   );
 };
