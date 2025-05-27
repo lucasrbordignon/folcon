@@ -17,7 +17,7 @@ export const RegisterView: React.FC = () => {
       </View>
 
       <View className="flex-1 -mt-16 bg-white rounded-tl-[70px] px-8 pt-10">
-        <Text className="text-4xl text-center font-light text-teal-900 mt-10 mb-20">Login</Text>
+        <Text className="text-4xl text-center font-light text-teal-900 mt-10 mb-20">Register</Text>
 
         <Text className="text-teal-900/80 font-semibold mb-1">Email</Text>
         <TextInput
@@ -28,7 +28,17 @@ export const RegisterView: React.FC = () => {
           placeholderTextColor="#999"
         />
       
-        <Text className="text-teal-900/80 font-semibold mb-1">Senha</Text>
+        <Text className="text-teal-900/80 font-semibold mb-1">Sua senha</Text>
+        <TextInput
+          className="bg-gray-100 rounded-xl text-lg px-4 py-3 mb-6 text-black"
+          value={password}
+          onChangeText={setPassword}
+          placeholder="•••••••"
+          placeholderTextColor="#999"
+          secureTextEntry
+        />
+
+        <Text className="text-teal-900/80 font-semibold mb-1">Confirme sua senha</Text>
         <TextInput
           className="bg-gray-100 rounded-xl text-lg px-4 py-3 mb-6 text-black"
           value={password}
@@ -48,16 +58,10 @@ export const RegisterView: React.FC = () => {
           {isLoading ? (
             <ActivityIndicator color="#fff" />
           ) : (
-            <Text className="text-white text-lg font-semibold">Entrar</Text>
+            <Text className="text-white text-lg font-semibold">Cadastrar</Text>
           )}
  
         </TouchableOpacity>
-        <View className="flex-row justify-center">
-          <Text className="text-gray-500">Não tem uma conta?</Text>
-          <TouchableOpacity>
-            <Text className="text-teal-600/80 font-semibold ml-1">Cadastre-se</Text>
-          </TouchableOpacity>
-        </View>
       </View>
     </View>
   );

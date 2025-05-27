@@ -4,10 +4,11 @@ import { StatusBar } from 'react-native';
 import { PaperProvider } from 'react-native-paper';
 
 import { MainTabs } from '@/components/layout/MainTabs';
+import { PrivateStackParamList } from '@/types/navigation';
 import InsertClientScreen from '../app/screens/ClientScreen';
 import InsertContactScreen from '../app/screens/ContactScreen';
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator<PrivateStackParamList>();
 
 export const PrivateStack = () => {
   return (

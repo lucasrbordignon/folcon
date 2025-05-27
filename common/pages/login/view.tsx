@@ -3,7 +3,7 @@ import { ActivityIndicator, Image, KeyboardAvoidingView, Platform, ScrollView, T
 import useLoginViewModel from "./view.models";
 
 export const LoginView: React.FC = () => {
-  const { email, isLoading, onSubmit, setEmail, password, setPassword, error } =
+  const { email, isLoading, onSubmit, setEmail, password, setPassword, error, goToRegister } =
     useLoginViewModel();
 
   return (
@@ -63,7 +63,7 @@ export const LoginView: React.FC = () => {
         </TouchableOpacity>
         <View className="flex-row justify-center">
           <Text className="text-gray-500">Não tem uma conta?</Text>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => goToRegister()}>
             <Text className="text-teal-600/80 font-semibold ml-1">Cadastre-se</Text>
           </TouchableOpacity>
         </View>

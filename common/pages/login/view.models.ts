@@ -1,9 +1,15 @@
 import { useAuth } from "@/navegation/AuthContext";
+import { PublicStackParamList } from "@/types/navigation";
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from "@react-navigation/stack";
 import { useState } from "react";
 import { login as loginService } from "../../models/repositories/auth.repository";
 import { LoginFormValues } from "./models";
 
+type NavigationProp = StackNavigationProp<PublicStackParamList, 'Login'>;
+
 const useLoginViewModel = (): LoginFormValues => {
+  const navigation = useNavigation<NavigationProp>();
   
   const { login } = useAuth();
 
@@ -34,7 +40,7 @@ const useLoginViewModel = (): LoginFormValues => {
     setPassword,
     isLoading,
     onSubmit,
-    goToRegister: () => {}
+    goToRegister: () => navigation.navigate('Register'),
   };
 }
 

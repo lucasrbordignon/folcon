@@ -1,9 +1,10 @@
 // PublicStack.tsx
 import { LoginView } from '@/common/pages/login/view';
 import { RegisterView } from '@/common/pages/Register/view';
+import { PublicStackParamList } from '@/types/navigation';
 import { createStackNavigator } from '@react-navigation/stack';
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator<PublicStackParamList>();
 
 export const PublicStack = () => (
   <Stack.Navigator screenOptions={{ headerShown: false }}>
