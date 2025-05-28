@@ -40,7 +40,8 @@ const useLoginViewModel = (): LoginFormValues => {
     setPassword,
     isLoading,
     onSubmit,
-    goToRegister: () => navigation.navigate('Register'),
+    error,
+    goToRegister: () => navigation.navigate('Register')
   };
 }
 

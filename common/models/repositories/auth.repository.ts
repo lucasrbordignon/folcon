@@ -19,3 +19,18 @@ export const login = async (data: loginDTO) => {
   
   return user;
 }
+
+export const signUp = async (data: loginDTO) => {
+  const { email, password } = data;
+
+  const { data: user, error } = await supabase.auth.signUp({
+    email,
+    password,
+  });
+
+  if (error) {
+    throw new Error(error.message);
+  }
+  
+  return user;
+}
