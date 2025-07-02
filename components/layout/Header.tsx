@@ -4,7 +4,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export default function Header() {
   const insets = useSafeAreaInsets();
-
+  
   return (
     <View style={{ paddingTop: insets.top }} className="items-center bg-white w-full">
       <Image 

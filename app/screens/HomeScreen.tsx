@@ -1,4 +1,4 @@
-import Header from '@/components/layout/Header'
+import HeaderDrawer from '@/components/layout/HeaderDrawer'
 import ContactCards from '@/components/ui/ContactCards'
 import DateDropdown from '@/components/ui/DateHomeDropdown'
 import Search from '@/components/ui/Search'
@@ -8,6 +8,7 @@ import { contactHomeType } from '@/types/contactHomeTypes'
 import { isToday, isYesterday, subDays } from 'date-fns'
 import { useEffect, useState } from 'react'
 import { ScrollView, Text, View } from 'react-native'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import mockData from '../../data/mockData.json'
 
 type statusFilterType = 'aberto' | 'finalizado' | 'cancelado' | 'todos'
@@ -29,6 +30,8 @@ export default function HomeScreen() {
 
     fetchData();
   }, []);  
+
+  const insets = useSafeAreaInsets();
 
   const filterByDate = (items: contactHomeType[], filter: dateFilterType): contactHomeType[] => {
     const today = new Date();
@@ -68,7 +71,9 @@ export default function HomeScreen() {
 
   return (
     <View className='flex-1'>
-      <Header />
+      <HeaderDrawer
+        topInset={insets.top} // Ajuste conforme necessário
+      />
       <Search />
       <Text className='text-teal-900 text-4xl font-semibold px-4 mt-3'>
         Contatos

@@ -4,7 +4,7 @@ export type PublicStackParamList = {
 };
 
 export type PrivateStackParamList = {
-  MainTabs: undefined;
+  Drawer: undefined;
   InsertContactScreen: undefined;
   InsertClientScreen: undefined;
 };

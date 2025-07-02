@@ -1,6 +1,14 @@
 import AppNavigator from '@/navegation/AppNavigator';
+import * as NavigationBar from 'expo-navigation-bar';
+import { useEffect } from 'react';
 import '../styles/global.css';
 
 export default function App() {
+  useEffect(() => {
+    NavigationBar.setVisibilityAsync("hidden");
+    NavigationBar.setBehaviorAsync("inset-swipe");
+    NavigationBar.setBackgroundColorAsync("transparent");
+  }, []);
+  
   return <AppNavigator />
 }
