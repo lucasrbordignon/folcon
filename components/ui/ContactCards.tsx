@@ -16,41 +16,50 @@ const formatDate = (dateString: string): string => {
   const year = date.getFullYear();
   const hours = String(date.getHours()).padStart(2, '0');
   const minutes = String(date.getMinutes()).padStart(2, '0');
-
   return `${day}/${month}/${year} ${hours}:${minutes}`;
 };
 
 export default function ContactCards({ items }: ContactCardsProps) {
-  const itemHeight = 148;
+  const itemHeight = 130;
 
   const renderItem = (item: contactHomeType) => (
     <View
-      className="w-full bg-white rounded-md px-2 py-4 mb-2 relative shadow-custom"
-      style={{ height: itemHeight }} 
+      className="w-full bg-white rounded-md px-4 py-3 mb-3 relative shadow-custom flex"
+      style={{
+        height: itemHeight,
+        borderLeftWidth: 5,
+        borderLeftColor: selectColorFromStatus(item.status),
+      }}
     >
-      <View
-        className="border border-zinc-400 h-3 w-3 rounded-full absolute right-2 top-2"
+      {/* Status no topo direito */}
+      <Text
+        className="absolute right-4 top-3 p-1 rounded-md text-zinc-100 text-xs uppercase"
         style={{ backgroundColor: selectColorFromStatus(item.status) }}
-      />
+      >
+        {item.status}
+      </Text>
 
-      <View className="flex gap-1">
-        <Text className="text-2xl font-semibold text-teal-950">{item.interest}</Text>
-        <Text className="text-teal-950">{item.observation.slice(0,90) + '...'}</Text>
-      </View>
+      {/* Título */}
+      <Text className="text-xl font-bold text-teal-950 mb-1">{item.interest}</Text>
 
-      <View className="flex flex-row justify-between mt-4">
-        <View className="flex gap-1">
-          <Text className="font-semibold text-zinc-400">Cliente</Text>
-          <Text>{item.client.name}</Text>
+      {/* Descrição */}
+      <Text className="text-zinc-600 text-base mb-3" numberOfLines={2}>
+        {item.observation}
+      </Text>
+
+      {/* Rodapé: Cliente | Data/Hora | Orçamento */}
+      <View className="flex-row justify-between items-center absolute left-4 right-4 bottom-3">
+        <View className="flex-row items-center gap-1">
+          <Ionicons name="person" size={18} color="#64748b" />
+          <Text className="text-sm text-zinc-700">{item.client.name}</Text>
         </View>
-        <View className="flex gap-1">
-          <Text className="font-semibold text-zinc-400">Data/Hora</Text>
-          <Text>{formatDate(item.contactedAt)}</Text>
+        <View className="flex-row items-center gap-1">
+          <Ionicons name="calendar" size={18} color="#64748b" />
+          <Text className="text-sm text-zinc-700">{formatDate(item.contactedAt)}</Text>
         </View>
-
-        <View className="flex flex-row gap-2 px-4 py-1 items-end">
-          <Ionicons name="cash" size={18} color={'#0d9488'} />
-          <Text>{item.budgets}</Text>
+        <View className="flex-row items-center gap-1">
+          <Ionicons name="cash" size={18} color="#0d9488" />
+          <Text className="text-base text-zinc-700">{item.budgets}</Text>
         </View>
       </View>
     </View>
@@ -59,7 +68,7 @@ export default function ContactCards({ items }: ContactCardsProps) {
   const renderHiddenItem = () => (
     <View
       className="flex-row justify-between items-center bg-gray-200 rounded-md mb-2 mx-1"
-      style={{ height: itemHeight }} 
+      style={{ height: itemHeight }}
     >
       <TouchableOpacity
         className="bg-green-600 w-1/2 rounded-l-md flex items-start justify-center"
