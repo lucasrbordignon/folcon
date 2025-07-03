@@ -33,21 +33,13 @@ export default function Search() {
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
       >
         <View className="bg-white px-4 py-4 w-full shadow-custom">
-
-          <View className="rounded-full border flex flex-row items-center justify-between px-4 py-2"
-            style={{
-              backgroundColor: "#ECF0F1",
-              borderColor: "#DAE2E3"
-            }}
-          >
+          <View className="rounded-full bg-zinc-100 border border-zinc-200 flex flex-row items-center justify-between px-4">
             <TextInput            
               placeholder="O que você deseja ver?"               
-              placeholderTextColor={"#8E8E8E"}
-              className='font-semibold flex-1'
+              className='flex-1 placeholder:text-zinc-400 text-base'
             />
-
             <Pressable onPress={createThreeButtonAlert}>
-              <Ionicons name="search" size={24} color="#8E8E8E"/>
+              <Ionicons name="search" size={24} color="#a1a1aa"/>
             </Pressable>
           </View>   
         </View>

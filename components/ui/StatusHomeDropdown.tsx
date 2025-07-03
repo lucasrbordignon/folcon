@@ -29,7 +29,7 @@ const StatusDropdown: React.FC<StatusDropdownProps> = ({ selected, onChange }) =
         onDismiss={closeMenu}
         anchor={
           <Pressable onPress={openMenu} className='bg-teal-600 border border-teal-400 rounded-full flex flex-row py-2 px-4 gap-2'>
-            <Ionicons name="funnel" size={18} color={'#FFFF'} />
+            <Ionicons name="checkmark-done" size={18} color={'#FFFF'} />
             <Text className='!text-white'>
               {selectTitleFromStatus(selected)}
             </Text>

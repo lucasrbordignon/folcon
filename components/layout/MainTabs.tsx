@@ -17,7 +17,7 @@ const CustomTabBar = ({ state, descriptors, navigation }: any) => {
   const currentRouteName = state.routes[state.index]?.name;
 
   const handlePressActions: Record<string, () => void> = {
-    Home: () => {
+    Contatos: () => {
       navigation.navigate(InsertContactScreen)
     },
     Profile: () => {
@@ -54,7 +54,7 @@ const CustomTabBar = ({ state, descriptors, navigation }: any) => {
         const { options } = descriptors[route.key];
         const isFocused = state.index === index;        
 
-        let icon = route.name === 'Home' ?  homeIcon() : usersIcon();
+        let icon = route.name === 'Contatos' ?  homeIcon() : usersIcon();
         if (isFocused) icon = React.cloneElement(icon, { color: '#0d9488' });
 
         return (
@@ -74,7 +74,7 @@ const CustomTabBar = ({ state, descriptors, navigation }: any) => {
 export const MainTabs = () => {
   return (
     <Tab.Navigator tabBar={(props) => <CustomTabBar {...props} />}>
-      <Tab.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
+      <Tab.Screen name="Contatos" component={HomeScreen} options={{ headerShown: false }} />
       <Tab.Screen name="Profile" component={ClientScreen} options={{ headerShown: false }} />
     </Tab.Navigator>
   );

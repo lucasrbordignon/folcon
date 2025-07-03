@@ -1,96 +1,78 @@
-import HeaderDrawer from '@/components/layout/HeaderDrawer'
-import ContactCards from '@/components/ui/ContactCards'
-import DateDropdown from '@/components/ui/DateHomeDropdown'
-import Search from '@/components/ui/Search'
-import SortOrderDropdown from '@/components/ui/SortOrderDropdown'
-import StatusDropdown from '@/components/ui/StatusHomeDropdown'
-import { contactHomeType } from '@/types/contactHomeTypes'
-import { isToday, isYesterday, subDays } from 'date-fns'
-import { useEffect, useState } from 'react'
-import { ScrollView, Text, View } from 'react-native'
-import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import mockData from '../../data/mockData.json'
+import FilterCollapse, { DateFilterType, StatusFilterType } from "@/components/filters/FilterCollapse";
+import HeaderDrawer from '@/components/layout/HeaderDrawer';
+import ContactCards from '@/components/ui/ContactCards';
+import Search from '@/components/ui/Search';
+import { contactHomeType } from '@/types/contactHomeTypes';
+import { isToday, isYesterday, subDays } from 'date-fns';
+import { useEffect, useMemo, useState } from 'react';
+import { View } from 'react-native';
+import mockData from '../../data/mockData.json';
 
-type statusFilterType = 'aberto' | 'finalizado' | 'cancelado' | 'todos'
-type dateFilterType = 'hoje' | 'ontem' | 'ultimos7dias' | 'ultimos30dias' | 'todos'
-type sortOrderType = 'newest' | 'oldest';
+function filterByDate(items: contactHomeType[], filter: DateFilterType): contactHomeType[] {
+  const today = new Date();
+  switch (filter) {
+    case 'hoje':
+      return items.filter(item => isToday(new Date(item.contactedAt)));
+    case 'ontem':
+      return items.filter(item => isYesterday(new Date(item.contactedAt)));
+    case 'ultimos7dias':
+      return items.filter(item => new Date(item.contactedAt) >= subDays(today, 7));
+    case 'ultimos30dias':
+      return items.filter(item => new Date(item.contactedAt) >= subDays(today, 30));
+    case 'todos':
+    default:
+      return items;
+  }
+}
+
+function filterByStatus(items: contactHomeType[], status: StatusFilterType): contactHomeType[] {
+  if (status === 'todos') return items;
+  return items.filter(item => item.status === status);
+}
+
+function sortNewest(items: contactHomeType[]): contactHomeType[] {
+  return [...items].sort((a, b) => {
+    const dateA = new Date(a.contactedAt).getTime();
+    const dateB = new Date(b.contactedAt).getTime();
+    return dateB - dateA;
+  });
+}
 
 export default function HomeScreen() {
-
   const [items, setItems] = useState<contactHomeType[]>([]);
-  const [selectedFilter, setSelectedFilter] = useState<statusFilterType>('aberto');
-  const [selectedDateFilter, setSelectedDateFilter] = useState<dateFilterType>('hoje')
-  const [sortOrder, setSortOrder] = useState<sortOrderType>('newest');
+  const [selectedFilter, setSelectedFilter] = useState<StatusFilterType>('todos');
+  const [selectedDateFilter, setSelectedDateFilter] = useState<DateFilterType>('todos');
 
   useEffect(() => {
     const fetchData = async () => {
       await new Promise(resolve => setTimeout(resolve, 1000));
       setItems(mockData.contatos);
     };
-
     fetchData();
-  }, []);  
+  }, []);
 
-  const insets = useSafeAreaInsets();
-
-  const filterByDate = (items: contactHomeType[], filter: dateFilterType): contactHomeType[] => {
-    const today = new Date();
-    let filteredItems = [];
-
-    switch (filter) {
-      case 'hoje':
-        filteredItems = items.filter(item => isToday(new Date(item.contactedAt)));
-        break;
-      case 'ontem':
-        filteredItems = items.filter(item => isYesterday(new Date(item.contactedAt)));
-        break;
-      case 'ultimos7dias':
-        filteredItems = items.filter(item => new Date(item.contactedAt) >= subDays(today, 7));
-        break;
-      case 'ultimos30dias':
-        filteredItems = items.filter(item => new Date(item.contactedAt) >= subDays(today, 30));
-        break;
-      case 'todos':
-      default:
-        filteredItems = items;
-        break;
-    }
-
-    return filteredItems;
-  }
-
-  const filteredItems = selectedFilter === 'todos'
-    ? filterByDate(items, selectedDateFilter) 
-    : filterByDate(items.filter(item => item.status === selectedFilter), selectedDateFilter); 
-
-  const sortedItems = [...filteredItems].sort((a, b) => {
-    const dateA = new Date(a.contactedAt).getTime();
-    const dateB = new Date(b.contactedAt).getTime();
-    return sortOrder === 'newest' ? dateB - dateA : dateA - dateB;
-  });
+  const filteredAndSortedItems = useMemo(() => {
+    let result = filterByStatus(items, selectedFilter);
+    result = filterByDate(result, selectedDateFilter);
+    return sortNewest(result);
+  }, [items, selectedFilter, selectedDateFilter]);
 
   return (
     <View className='flex-1'>
-      <HeaderDrawer
-        topInset={insets.top} // Ajuste conforme necessário
-      />
+      <HeaderDrawer />
       <Search />
-      <Text className='text-teal-900 text-4xl font-semibold px-4 mt-3'>
-        Contatos
-      </Text>      
 
-      <View className='flex flex-row px-4' style={{ overflow: 'hidden' }}>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          <SortOrderDropdown selected={sortOrder} onChange={setSortOrder} />
-          <StatusDropdown selected={selectedFilter} onChange={setSelectedFilter} />
-          <DateDropdown selected={selectedDateFilter} onChange={setSelectedDateFilter} />
-        </ScrollView>
-      </View>
-      
+      <FilterCollapse
+        description="Últimos contatos"
+        selectedStatus={selectedFilter}
+        onStatusChange={setSelectedFilter}
+        selectedDate={selectedDateFilter}
+        onDateChange={setSelectedDateFilter}
+      />
+
       <View className='px-4 flex-1'>
-        <ContactCards items={sortedItems}/>     
+        <ContactCards items={filteredAndSortedItems} />
       </View>
-       
     </View>
-  )
+  );
 }

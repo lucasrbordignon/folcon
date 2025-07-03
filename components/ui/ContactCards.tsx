@@ -25,7 +25,7 @@ export default function ContactCards({ items }: ContactCardsProps) {
 
   const renderItem = (item: contactHomeType) => (
     <View
-      className="w-full bg-white rounded-md px-2 py-4 my-2 relative shadow-custom"
+      className="w-full bg-white rounded-md px-2 py-4 mb-2 relative shadow-custom"
       style={{ height: itemHeight }} 
     >
       <View
@@ -58,7 +58,7 @@ export default function ContactCards({ items }: ContactCardsProps) {
 
   const renderHiddenItem = () => (
     <View
-      className="flex-row justify-between items-center bg-gray-200 rounded-md my-2 mx-1"
+      className="flex-row justify-between items-center bg-gray-200 rounded-md mb-2 mx-1"
       style={{ height: itemHeight }} 
     >
       <TouchableOpacity
