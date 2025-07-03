@@ -1,10 +1,13 @@
-import React from "react";
+import { Ionicons } from "@expo/vector-icons";
+import React, { useState } from "react";
 import { ActivityIndicator, Image, KeyboardAvoidingView, Platform, ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
 import useLoginViewModel from "./view.models";
 
 export const LoginView: React.FC = () => {
   const { email, isLoading, onSubmit, setEmail, password, setPassword, error, goToRegister } =
     useLoginViewModel();
+
+  const [showPassword, setShowPassword] = useState(false);
 
   return (
     <KeyboardAvoidingView
@@ -37,14 +40,23 @@ export const LoginView: React.FC = () => {
             />
           
             <Text className="text-teal-900/80 text-lg font-semibold mb-1">Senha</Text>
-            <TextInput
-              className="bg-gray-100 rounded-xl text-xl px-4 py-4 mb-8 text-black"
-              value={password}
-              onChangeText={setPassword}
-              placeholder="•••••••"
-              placeholderTextColor="#999"
-              secureTextEntry
-            />
+            <View className="flex-row items-center bg-gray-100 rounded-xl mb-8 px-4">
+              <TextInput
+                className="flex-1 text-xl py-4 text-black"
+                value={password}
+                onChangeText={setPassword}
+                placeholder="•••••••"
+                placeholderTextColor="#999"
+                secureTextEntry={!showPassword}
+              />
+              <TouchableOpacity onPress={() => setShowPassword((v) => !v)}>
+                <Ionicons
+                  name={showPassword ? "eye-off" : "eye"}
+                  size={24}
+                  color="#64748b"
+                />
+              </TouchableOpacity>
+            </View>
 
             {error ? <Text className="text-red-500 mb-3">{error}</Text> : null}
 
