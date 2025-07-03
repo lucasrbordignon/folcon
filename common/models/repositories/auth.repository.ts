@@ -6,7 +6,8 @@ export interface loginDTO {
 }
 
 export const login = async (data: loginDTO) => {
-  const { email, password } = data;
+  const email = data.email.trim();
+  const password = data.password.trim();
 
   const { data: user, error } = await supabase.auth.signInWithPassword({
     email,
@@ -21,7 +22,8 @@ export const login = async (data: loginDTO) => {
 }
 
 export const signUp = async (data: loginDTO) => {
-  const { email, password } = data;
+  const email = data.email.trim();
+  const password = data.password.trim();
 
   const { data: user, error } = await supabase.auth.signUp({
     email,
