@@ -3,9 +3,9 @@ import React from 'react';
 import { StatusBar } from 'react-native';
 import { PaperProvider } from 'react-native-paper';
 
+import InsertClientScreen from '@/app/screens/ClientScreen';
+import InsertContactScreen from '@/app/screens/ContactScreen';
 import { PrivateStackParamList } from '@/types/navigation';
-import InsertClientScreen from '../app/screens/ClientScreen';
-import InsertContactScreen from '../app/screens/ContactScreen';
 import DrawerNavigator from './DrawerNavigator';
 
 const Stack = createStackNavigator<PrivateStackParamList>();

@@ -31,7 +31,6 @@ export default function ContactCards({ items }: ContactCardsProps) {
         borderLeftColor: selectColorFromStatus(item.status),
       }}
     >
-      {/* Status no topo direito */}
       <Text
         className="absolute right-4 top-3 p-1 rounded-md text-zinc-100 text-xs uppercase"
         style={{ backgroundColor: selectColorFromStatus(item.status) }}
@@ -39,15 +38,12 @@ export default function ContactCards({ items }: ContactCardsProps) {
         {item.status}
       </Text>
 
-      {/* Título */}
       <Text className="text-xl font-bold text-teal-950 mb-1">{item.interest}</Text>
 
-      {/* Descrição */}
       <Text className="text-zinc-600 text-base mb-3" numberOfLines={2}>
         {item.observation}
       </Text>
 
-      {/* Rodapé: Cliente | Data/Hora | Orçamento */}
       <View className="flex-row justify-between items-center absolute left-4 right-4 bottom-3">
         <View className="flex-row items-center gap-1">
           <Ionicons name="person" size={18} color="#64748b" />

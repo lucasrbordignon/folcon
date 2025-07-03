@@ -1,9 +1,9 @@
+import { signUp as singinService } from "@/common/models/repositories/auth.repository";
 import { useAuth } from "@/navegation/AuthContext";
 import { PublicStackParamList } from "@/types/navigation";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { useNavigation } from "expo-router";
 import { useState } from "react";
-import { signUp as singinService } from "../../models/repositories/auth.repository";
 import { SiginFormValues } from "./models";
 
 type NavigationProp = StackNavigationProp<PublicStackParamList, 'Register'>;

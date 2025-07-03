@@ -1,6 +1,6 @@
 // PublicStack.tsx
-import { LoginView } from '@/common/pages/login/view';
-import { RegisterView } from '@/common/pages/signin/view';
+import { LoginView } from '@/common/pages/public/login/view';
+import { RegisterView } from '@/common/pages/public/signin/view';
 import { PublicStackParamList } from '@/types/navigation';
 import { createStackNavigator } from '@react-navigation/stack';
 

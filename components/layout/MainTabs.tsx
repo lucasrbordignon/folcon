@@ -1,12 +1,11 @@
 
+import HomeScreen from '@/common/pages/private/home/view';
 import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React from 'react';
 import { TouchableOpacity, View } from 'react-native';
 import InsertClientScreen from '../../app/screens/ClientScreen';
 import ClientScreen from '../../app/screens/ClientsScreen';
-import InsertContactScreen from '../../app/screens/ContactScreen';
-import HomeScreen from '../../app/screens/HomeScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -18,7 +17,7 @@ const CustomTabBar = ({ state, descriptors, navigation }: any) => {
 
   const handlePressActions: Record<string, () => void> = {
     Contatos: () => {
-      navigation.navigate(InsertContactScreen)
+      navigation.navigate(HomeScreen)
     },
     Profile: () => {
       navigation.navigate(InsertClientScreen)
